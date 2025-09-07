@@ -154,7 +154,7 @@ const AddQuote = () => {
         <div className="text-center">
         <button
             type="submit"
-            className="btn text-white bg-[#4dbbe8] w-full hover:bg-[#3aa1c1]"
+            className="btn text-white bg-[#2dcfc4] w-full rounded-lg"
         >
             Submit Quote
         </button>
