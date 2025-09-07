@@ -22,6 +22,9 @@ const NavBar = () => {
                     <li><NavLink to='/'>Home</NavLink></li>
                     <li><NavLink to='/quotesList'>Quotes List</NavLink></li>
                     <li><NavLink to='/addQuote'>Add Quote</NavLink></li>
+                    {user && 
+                        <li><NavLink to='/myQuotes'>My Quotes</NavLink></li>
+                    }
                   </>
     return (
         <div className='bg-base-100 sticky top-0 z-50 shadow-md'>

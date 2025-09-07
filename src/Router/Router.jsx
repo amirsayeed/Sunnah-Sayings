@@ -8,6 +8,7 @@ import AddQuote from "../pages/AddQuote/AddQuote";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import AuthLayout from "../layouts/AuthLayout";
+import MyQuotes from "../pages/MyQuotes/MyQuotes";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
         {
             path: 'addQuote',
             Component: AddQuote
+        },
+        {
+            path: 'myQuotes',
+            Component: MyQuotes
         }
     ]
   },
