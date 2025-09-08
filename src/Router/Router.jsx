@@ -8,12 +8,21 @@ import AddQuote from "../pages/AddQuote/AddQuote";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import AuthLayout from "../layouts/AuthLayout";
-import MyQuotes from "../pages/MyQuotes/MyQuotes";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyQuotes from "../pages/Dashboard/MyQuotes/MyQuotes";
+import QuoteDetailsPage from "../pages/QuoteDetailsPage/QuoteDetailsPage";
+import UpdateQuote from "../pages/Admin/UpdateQuote";
+import PrivateRoute from "../routes/PrivateRoute";
+import Error from "../components/shared/Error";
+import AdminRoute from "../routes/AdminRoute";
+import ManageQuotes from "../pages/Dashboard/ManageQuotes/ManageQuotes";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <Error/>,
     children: [
         {
             index: true,
@@ -25,11 +34,19 @@ export const router = createBrowserRouter([
         },
         {
             path: 'addQuote',
-            Component: AddQuote
+            element: <PrivateRoute><AddQuote/></PrivateRoute>
         },
         {
-            path: 'myQuotes',
-            Component: MyQuotes
+            path: 'quotes/:id',
+            Component: QuoteDetailsPage
+        },
+        {
+            path: 'updateQuotes/:id',
+            element: <PrivateRoute><UpdateQuote/></PrivateRoute>
+        },
+        {
+            path: 'manageQuotes',
+            element: <AdminRoute><ManageQuotes/></AdminRoute>
         }
     ]
   },
@@ -46,6 +63,27 @@ export const router = createBrowserRouter([
             path: 'register',
             Component: Register
         }
+    ]
+  }
+  ,
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><DashboardLayout/></PrivateRoute>,
+    children: [
+      {
+        index: true,
+        Component: DashboardHome
+      },
+      {
+        path: 'myQuotes',
+        element: <PrivateRoute><MyQuotes/></PrivateRoute> 
+      },
+
+      //admin only routes
+      {
+        path: 'manageQuotes',
+        element: <AdminRoute><ManageQuotes/></AdminRoute>
+      }
     ]
   }
 ]);

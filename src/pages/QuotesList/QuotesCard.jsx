@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const QuotesCard = ({quote}) => {
     return (
-        <div className="card bg-base-100 shadow-xl border border-gray-200 p-2">
+        <div className="card bg-base-100 shadow-xl border border-gray-300 p-2">
           <div className="card-body">
             <p className="text-gray-800 text-lg font-medium mb-2">
               "{quote.text}"
@@ -22,9 +23,9 @@ const QuotesCard = ({quote}) => {
             </div>
 
             <div className="card-actions justify-center">
-              <button className="btn text-white bg-[#2dcfc4] rounded-lg">
+              <Link to={`/quotes/${quote._id}`} className="btn btn-sm text-white bg-[#2dcfc4] rounded-lg">
                 View More
-              </button>
+              </Link>
             </div>
           </div>
         </div>

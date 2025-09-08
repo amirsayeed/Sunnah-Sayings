@@ -4,11 +4,9 @@ import { Link, NavLink } from 'react-router';
 import Logo from './Logo';
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
-import { LuLogIn, LuLogOut } from 'react-icons/lu';
 
 const NavBar = () => {
     const {user,logOut} = useAuth();
-
     const handleLogOut = async () => {
         await logOut().then(() => {
             toast.success('Successfully logged out');
@@ -22,9 +20,6 @@ const NavBar = () => {
                     <li><NavLink to='/'>Home</NavLink></li>
                     <li><NavLink to='/quotesList'>Quotes List</NavLink></li>
                     <li><NavLink to='/addQuote'>Add Quote</NavLink></li>
-                    {user && 
-                        <li><NavLink to='/myQuotes'>My Quotes</NavLink></li>
-                    }
                   </>
     return (
         <div className='bg-base-100 sticky top-0 z-50 shadow-md'>
@@ -51,20 +46,44 @@ const NavBar = () => {
             </div>
             <div className="navbar-end">
                 {user ? 
-                    <div className='flex gap-2'>
-                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
-                            {user?.photoURL ? <img className='w-10 h-10 rounded-full' src={user.photoURL} alt="" /> : <FaUserCircle size={40} />}
-                        </div> 
-                        <button onClick={handleLogOut} className='btn flex bg-[#2dcfc4] text-white rounded-xl p-2'>
-                            <span>Logout</span>
-                            <span><LuLogOut size={15} /></span>
-                        </button>
-                    </div> 
-                    : <Link to='/login'><button className="btn flex bg-[#2dcfc4] text-white rounded-xl p-2">
+                    (<div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                            {user.photoURL && 
+                                <img src={user.photoURL} alt={user.displayName} />
+                            }
+                            </div>
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+                        >
+                            <li className="cursor-default select-none font-semibold px-4 py-2">
+                            {user.displayName}
+                            </li>
+                            <li>
+                            <NavLink to="/dashboard" className="justify-between" tabIndex={-1}>
+                              Dashboard
+                            </NavLink>
+                            </li>
+                            <li>
+                            <button
+                                onClick={handleLogOut}
+                                className="w-full text-left"
+                                tabIndex={-1}
+                            >
+                                Logout
+                            </button>
+                            </li>
+                        </ul>
+                        </div>
+                    ) :
+                    (<div>
+                        <Link to='/login' className="btn flex text-white bg-[#2dcfc4] p-2 text-sm rounded-md">
                         <span>Login</span>
-                        <span><LuLogIn size={15} /></span>
-                    </button></Link>
-                }            
+                        <span><IoMdLogIn size={20} /></span>
+                        </Link>
+                    </div>)}    
                 </div>
             </div>
         </div>

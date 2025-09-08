@@ -8,12 +8,11 @@ import { toast } from 'react-toastify';
 import { FaUserPlus } from 'react-icons/fa6';
 import useAxios from '../../../hooks/useAxios';
 
-
 const Register = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
     const [showPassword, setShowPassword] = useState(false);
-    const {signUp,setUser,updateUser} = useAuth();
     const axiosInstance = useAxios();
+    const {signUp,setUser,updateUser} = useAuth();
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -27,6 +26,7 @@ const Register = () => {
                 name: data.name,
                 email: data.email,
                 role: 'user', 
+                subscribed: false, 
                 createdAt: new Date().toISOString()
             };
 
@@ -111,13 +111,12 @@ const Register = () => {
                 <p className="my-1 text-sm text-center dark:text-gray-600">Already have an account?
                 <Link to='/login' className="hover:underline text-blue-400"> Login</Link>
                 </p>
-                <button type='submit' className="btn flex w-full bg-[#4dbbe8] text-white rounded-md">
+                <button type='submit' className="btn flex w-full bg-[#2dcfc4] text-white rounded-md">
                     <span>Register</span>
                     <span><FaUserPlus size={15} /></span>
                 </button>
             </form>
-            <SocialLogin/>
-            
+            <SocialLogin/>      
             </div>
         </div>
         </div>

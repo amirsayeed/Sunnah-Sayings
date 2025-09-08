@@ -57,7 +57,7 @@ const Login = () => {
                     errors.password?.type === 'minLength' && <p className='text-red-500'>Password Must be 6 characters or longer</p>
                 }
                 <Link className="text-xs my-1 hover:underline dark:text-gray-600">Forgot password?</Link>
-                <button type='submit' className="btn flex text-white bg-[#4dbbe8] w-full rounded-md">
+                <button type='submit' className="btn flex text-white bg-[#2dcfc4] w-full rounded-md">
                     <span>Login</span>
                     <span><IoMdLogIn size={20} /></span>
                 </button>

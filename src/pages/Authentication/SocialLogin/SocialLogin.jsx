@@ -41,7 +41,7 @@ const SocialLogin = () => {
                 <hr className="w-full dark:text-gray-600" />
             </div>
             <div>
-                <button onClick={handleGoogleLogin} className="btn w-full text-white bg-[#4dbbe8]">
+                <button onClick={handleGoogleLogin} className="btn w-full text-white bg-[#2dcfc4]">
                 <FcGoogle size={20}/> Login with Google</button>
             </div>
         </div>

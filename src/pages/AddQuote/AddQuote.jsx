@@ -5,12 +5,14 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import "@pathofdev/react-tag-input/build/index.css";
+import { useNavigate } from "react-router";
 
 
 const AddQuote = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -39,6 +41,7 @@ const AddQuote = () => {
         reset();
         setTags([]);
       }
+      navigate('/quotesList')
     } catch (err) {
       console.error(err);
       Swal.fire({
